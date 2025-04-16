@@ -7,10 +7,9 @@ namespace Content.Shared.ADT.RPD.Components;
 [Access(typeof(RPDAmmoSystem))]
 public sealed partial class RPDAmmoComponent : Component
 {
-    /// <summary>
-    /// How many charges are contained in this ammo cartridge.
-    /// Can be partially transferred into an RPD, until it is empty then it gets deleted.
-    /// </summary>
-    [DataField("charges"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public int Charges = 130;
+    [DataField("rpdcharges"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public int RPDCharges { get; set; } = 130;
+
+    [DataField("rcdcharges"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public int RCDCharges { get; set; } = 30;
 }

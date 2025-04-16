@@ -3,6 +3,7 @@ using Content.Shared.Charges.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.RCD.Components;
 using Content.Shared.ADT.RPD.Components;
 using Robust.Shared.Timing;
 
@@ -27,7 +28,9 @@ public sealed class RPDAmmoSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var examineMessage = Loc.GetString("rpd-ammo-component-on-examine", ("charges", comp.Charges));
+        var examineMessage = Loc.GetString("rpd-ammo-component-on-examine",
+            ("rpdCharges", comp.RPDCharges),
+            ("rcdCharges", comp.RCDCharges));
         args.PushText(examineMessage);
     }
 
@@ -37,13 +40,27 @@ public sealed class RPDAmmoSystem : EntitySystem
             return;
 
         if (args.Target is not { Valid: true } target ||
-            !HasComp<RPDComponent>(target) ||
             !TryComp<LimitedChargesComponent>(target, out var charges))
             return;
 
-        var user = args.User;
-        args.Handled = true;
-        var count = Math.Min(charges.MaxCharges - charges.Charges, comp.Charges);
+        if (HasComp<RCDComponent>(target))
+        {
+            ApplyRefill(uid, target, args.User, charges, comp, isRcd: true);
+            args.Handled = true;
+        }
+        else if (HasComp<RPDComponent>(target))
+        {
+            ApplyRefill(uid, target, args.User, charges, comp, isRcd: false);
+            args.Handled = true;
+        }
+    }
+
+    private void ApplyRefill(EntityUid uid, EntityUid target, EntityUid user, LimitedChargesComponent charges,
+        RPDAmmoComponent comp, bool isRcd)
+    {
+        int currentCharges = isRcd ? comp.RCDCharges : comp.RPDCharges;
+
+        var count = Math.Min(charges.MaxCharges - charges.Charges, currentCharges);
         if (count <= 0)
         {
             _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-full"), target, user);
@@ -52,11 +69,15 @@ public sealed class RPDAmmoSystem : EntitySystem
 
         _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-refilled"), target, user);
         _charges.AddCharges(target, count, charges);
-        comp.Charges -= count;
+
+        if (isRcd)
+            comp.RCDCharges -= count;
+        else
+            comp.RPDCharges -= count;
+
         Dirty(uid, comp);
 
-        // prevent having useless ammo with 0 charges
-        if (comp.Charges <= 0)
+        if (comp.RPDCharges <= 0 && comp.RCDCharges <= 0)
             QueueDel(uid);
     }
 }
