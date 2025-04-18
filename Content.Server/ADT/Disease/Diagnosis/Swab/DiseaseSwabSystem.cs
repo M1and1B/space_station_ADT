@@ -2,7 +2,7 @@
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
-using Content.Shared.AdventureSpace.Medical.Diseases.Diagnosis.Swab;
+using Content.Shared.ADT.Diseases.Diagnosis.Swab;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;

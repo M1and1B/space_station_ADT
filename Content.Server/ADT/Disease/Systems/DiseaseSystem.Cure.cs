@@ -4,6 +4,7 @@ using Content.Server.ADT.Disease.Data;
 using Content.Server.ADT.Disease.Prototypes;
 using Content.Server.Medical.Components;
 using Content.Shared.ADT.Chemistry.Reagent;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,8 +31,11 @@ public sealed partial class DiseaseSystem
     /**
      * При старте раунда каждый раз у болезней будут новые действующие лекарства,
      * Регулируется это параметром Randomize в прототипе болезней.
+
      * P.S. Пока не забыл, запишу тут, можно добавить болезням маркер частей тел
      * В которых они могут "обитать" и в которых уже "обитают", для хир.операций
+
+     * Извини Дарк, но пока без маркеров - M1and1B
      */
     private void OnRoundStarted(RoundStartedEvent ev)
     {

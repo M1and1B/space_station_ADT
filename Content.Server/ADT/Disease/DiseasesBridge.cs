@@ -1,7 +1,6 @@
-﻿// WTF IS THIS I DUNNO FUCCKKK - M1and1B
-using Content.Server._c4llv07e.Bridges;
-using Content.Server.ADT.Disease.Systems;
+﻿using Content.Server.ADT.Disease.Systems;
 using Content.Shared.FixedPoint;
+using Content.Server.ADT.Bridges;
 
 namespace Content.Server.ADT.Disease;
 

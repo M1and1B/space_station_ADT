@@ -1,4 +1,4 @@
-﻿using Content.Shared.ADT.Diseases.Effects;
+﻿using Content.Shared.ADT.Disease.Effects;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
 

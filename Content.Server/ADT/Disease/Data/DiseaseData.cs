@@ -1,4 +1,4 @@
-﻿using Content.Server.ADT.Disease.Сomponents;
+﻿using Content.Server.ADT.Disease.Components;
 
 namespace Content.Server.ADT.Disease.Data;
 

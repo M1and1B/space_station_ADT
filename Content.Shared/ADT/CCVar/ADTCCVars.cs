@@ -9,9 +9,8 @@ namespace Content.Shared.ADT.CCVar;
 [CVarDefs]
 public sealed class ADTCCVars
 {
-    /*
-    * Barks
-    */
+    #region Barks
+
     public static readonly CVarDef<bool> BarksEnabled =
         CVarDef.Create("barks.enabled", true, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
@@ -36,15 +35,16 @@ public sealed class ADTCCVars
     public static readonly CVarDef<float> BarksVolume =
         CVarDef.Create("barks.volume", 1f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /*
-    * Radial menu
-    */
+    #endregion
+
+    #region RadialMenu
+
     public static readonly CVarDef<bool> CenterRadialMenu =
         CVarDef.Create("radialmenu.center", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    /*
-    * Phantom
-    */
+    #endregion
+
+    #region Phantom
 
     public static readonly CVarDef<int> PhantomMinPlayers =
         CVarDef.Create("phantom.min_players", 25);
@@ -55,24 +55,26 @@ public sealed class ADTCCVars
     public static readonly CVarDef<int> PhantomMaxPicks =
         CVarDef.Create("phantom.max_picks", 10);
 
-    /*
-    * Discord
-    */
+    #endregion
+
+    #region Discord
 
     public static readonly CVarDef<string> DiscordBansWebhook =
         CVarDef.Create("discord.bans_webhook", string.Empty, CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
-    /*
-    * Offer Items
-    */
+    #endregion
+
+    #region Offer Items
+
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
-    /*
-    * Language
-    */
+    #endregion
+
+    #region Language
     public static readonly CVarDef<bool> EnableLanguageFonts =
         CVarDef.Create("lang.enable_fonts", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+    #endregion
 
     #region Supermatter
 
@@ -225,5 +227,11 @@ public sealed class ADTCCVars
         CVarDef.Create("supermatter.yell_timer", 60f, CVar.SERVER);
 
     #endregion
-}
 
+    #region Diseases
+
+    public static readonly CVarDef<bool> IsDeseasesEnabled =
+        CVarDef.Create("secret.diseases_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    #endregion
+}

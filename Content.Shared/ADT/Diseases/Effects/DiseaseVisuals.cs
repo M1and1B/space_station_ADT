@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Serialization;
 
-namespace Content.Client.ADT.Disease;
+namespace Content.Shared.ADT.Disease.Effects;
 
 [Serializable, NetSerializable]
 public enum DiseaseVisualLayers : byte

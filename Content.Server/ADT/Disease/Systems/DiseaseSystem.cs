@@ -1,6 +1,7 @@
 ﻿using Content.Server.ADT.Disease.Components;
 using Content.Server.ADT.Disease.Data;
 using Content.Server.ADT.Disease.Prototypes;
+using Content.Shared.ADT.CCVar;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Configuration;
@@ -28,7 +29,7 @@ public sealed partial class DiseaseSystem : EntitySystem
         InitializeCure();
         InitializeSpreading();
 
-        Subs.CVar(_cfg, SecretCCVars.SecretCCVars.IsDeseasesEnabled, value => _isDiseasesEnabled = value, true);
+        _cfg.OnValueChanged(ADTCCVars.IsDeseasesEnabled, value => _isDiseasesEnabled = value, true);
     }
 
     public void ForceAddDisease(EntityUid uid, string disease)
