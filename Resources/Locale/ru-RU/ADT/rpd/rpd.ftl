@@ -32,16 +32,11 @@ rpd-component-deconstruct = Демонтаж
 
 rpd-ammo-component-on-examine =
     Содержит:
-    \n- { $rpdCharges } { $rpdCharges ->
-        [one] заряд RPD
-        [few] заряда RPD
-       *[other] зарядов RPD
+    - { $charges } { $charges ->
+        [one] заряд
+        [few] заряда
+       *[other] зарядов
     }
-    \n- { $rcdCharges } { $rcdCharges ->
-        [one] заряд RCD
-        [few] заряда RCD
-       *[other] зарядов RCD
-    }.
 
 rpd-ammo-component-after-interact-full = Инструмент полон!
 rpd-ammo-component-after-interact-refilled = Вы пополняете инструмент.

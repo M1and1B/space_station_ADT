@@ -29,8 +29,7 @@ public sealed class RPDAmmoSystem : EntitySystem
             return;
 
         var examineMessage = Loc.GetString("rpd-ammo-component-on-examine",
-            ("rpdCharges", comp.RPDCharges),
-            ("rcdCharges", comp.RCDCharges));
+            ("$charges", comp.Charges));
         args.PushText(examineMessage);
     }
 
@@ -43,41 +42,30 @@ public sealed class RPDAmmoSystem : EntitySystem
             !TryComp<LimitedChargesComponent>(target, out var charges))
             return;
 
-        if (HasComp<RCDComponent>(target))
-        {
-            ApplyRefill(uid, target, args.User, charges, comp, isRcd: true);
-            args.Handled = true;
-        }
-        else if (HasComp<RPDComponent>(target))
-        {
-            ApplyRefill(uid, target, args.User, charges, comp, isRcd: false);
-            args.Handled = true;
-        }
+        if (!HasComp<RCDComponent>(target) && !HasComp<RPDComponent>(target))
+            return;
+
+        ApplyRefill(uid, target, args.User, charges, comp);
+        args.Handled = true;
     }
 
     private void ApplyRefill(EntityUid uid, EntityUid target, EntityUid user, LimitedChargesComponent charges,
-        RPDAmmoComponent comp, bool isRcd)
+        RPDAmmoComponent comp)
     {
-        int currentCharges = isRcd ? comp.RCDCharges : comp.RPDCharges;
-
-        var count = Math.Min(charges.MaxCharges - charges.Charges, currentCharges);
-        if (count <= 0)
+        var refillAmount = Math.Min(charges.MaxCharges - charges.Charges, comp.Charges);
+        if (refillAmount <= 0)
         {
             _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-full"), target, user);
             return;
         }
 
+        _charges.AddCharges(target, refillAmount, charges);
+        comp.Charges -= refillAmount;
+
         _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-refilled"), target, user);
-        _charges.AddCharges(target, count, charges);
-
-        if (isRcd)
-            comp.RCDCharges -= count;
-        else
-            comp.RPDCharges -= count;
-
         Dirty(uid, comp);
 
-        if (comp.RPDCharges <= 0 && comp.RCDCharges <= 0)
+        if (comp.Charges <= 0)
             QueueDel(uid);
     }
 }
