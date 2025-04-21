@@ -29,7 +29,7 @@ public sealed class RPDAmmoSystem : EntitySystem
             return;
 
         var examineMessage = Loc.GetString("rpd-ammo-component-on-examine",
-            ("$charges", comp.Charges));
+            ("charges", comp.Charges));
         args.PushText(examineMessage);
     }
 
@@ -43,6 +43,9 @@ public sealed class RPDAmmoSystem : EntitySystem
             return;
 
         if (!HasComp<RCDComponent>(target) && !HasComp<RPDComponent>(target))
+            return;
+
+        if (!HasComp<RPDComponent>(target) && !HasComp<RPDComponent>(target))
             return;
 
         ApplyRefill(uid, target, args.User, charges, comp);
