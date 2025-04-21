@@ -97,7 +97,7 @@
       - id: ADTDoorRemoteFirefight # ADT-Atmos-Remote
   # ADT-RPD-Start
       - id: ADTRPD
-      - id: ADTRPDAmmo
+  ##  - id: ADTRPDAmmo
   # ADT-RPD-End
     # ADT-WikiBooks-Start
       - id: ADTBookSRPeng
@@ -119,7 +119,7 @@
       - id: ADTDoorRemoteFirefight # ADT-Atmos-Remote
   # ADT-RPD-Start
       - id: ADTRPD
-      - id: ADTRPDAmmo
+  ##  - id: ADTRPDAmmo
   # ADT-RPD-End
     # ADT-WikiBooks-Start
       - id: ADTBookSRPeng

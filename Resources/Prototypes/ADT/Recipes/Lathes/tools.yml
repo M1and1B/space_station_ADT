@@ -6,10 +6,11 @@
     Steel: 1000
     Plastic: 300
 
-- type: latheRecipe
-  id: RPDAmmo
-  result: ADTRPDAmmo
-  completetime: 2.4
-  materials:
-    Steel: 500
-    Plastic: 250
+# RPD-RCD update
+#- type: latheRecipe
+#  id: RPDAmmo
+#  result: ADTRPDAmmo
+#  completetime: 2.4
+#  materials:
+#    Steel: 500
+#    Plastic: 250

@@ -6,7 +6,8 @@
   components:
   - type: StorageFill
     contents:
-    - id: ADTRPDAmmo
+    - id: RCDAmmo
+##  - id: ADTRPDAmmo
       amount: 3
 
 - type: entity
