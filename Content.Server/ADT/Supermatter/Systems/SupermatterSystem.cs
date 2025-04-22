@@ -386,5 +386,6 @@ public sealed partial class SupermatterSystem : EntitySystem
             return SupermatterStatusType.Normal;
 
         return SupermatterStatusType.Inactive;
+// Test
     }
 }
