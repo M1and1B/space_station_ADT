@@ -24,7 +24,7 @@
   cost: 10000
   recipeUnlocks:
     - RPD
-    - RPDAmmo
+##  - RPDAmmo
     - RCD
     - RCDAmmo
   position: 3,-4

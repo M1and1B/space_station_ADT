@@ -8,5 +8,5 @@ namespace Content.Shared.ADT.RPD.Components;
 public sealed partial class RPDAmmoComponent : Component
 {
     [DataField("charges"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public int Charges { get; set; } = 90;
+    public int Charges { get; set; } = 30;
 }

@@ -36,7 +36,8 @@
         - StationMap
         - SprayPainter
         - NetworkConfigurator
-        - RCD
+        - RCDS
+        - RCDAmmo
         - RCDAmmo
         - Welder
         - PowerCell
@@ -46,7 +47,7 @@
         - HandLabeler
         # ADT tweak start
         - RPD
-        - RPDAmmo
+##      - RPDAmmo
         # ADT tweak end
   - type: ItemMapper
     mapLayers:

@@ -42,10 +42,8 @@ public sealed class RPDAmmoSystem : EntitySystem
             !TryComp<LimitedChargesComponent>(target, out var charges))
             return;
 
-        if (!HasComp<RCDComponent>(target) && !HasComp<RPDComponent>(target))
-            return;
-
-        if (!HasComp<RPDComponent>(target) && !HasComp<RPDComponent>(target))
+        if (!( HasComp<RCDComponent>(target) ||
+            HasComp<RPDComponent>(target) ))
             return;
 
         ApplyRefill(uid, target, args.User, charges, comp);
