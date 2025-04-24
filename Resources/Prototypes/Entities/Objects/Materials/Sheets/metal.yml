@@ -44,6 +44,10 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/ADT/Entities/metal_drop.ogg
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100 
   # ADT End
 
 - type: entity
@@ -119,6 +123,8 @@
   - type: Stack
     stackType: Steel
     count: 1
+  - type: RPDAmmo
+    charges: 1
 
 - type: entity
   parent: SheetSteel

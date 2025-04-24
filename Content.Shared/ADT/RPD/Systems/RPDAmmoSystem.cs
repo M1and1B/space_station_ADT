@@ -42,7 +42,7 @@ public sealed class RPDAmmoSystem : EntitySystem
             !TryComp<LimitedChargesComponent>(target, out var charges))
             return;
 
-        if (!HasComp<RPDComponent>(target)) // (!( HasComp<RCDComponent>(target) || ))
+        if (!HasComp<RPDComponent>(target) && !HasComp<RCDComponent>(target))
             return;
 
         ApplyRefill(uid, target, args.User, charges, comp);
@@ -65,7 +65,7 @@ public sealed class RPDAmmoSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-refilled"), target, user);
         Dirty(uid, comp);
 
-        if (comp.Charges <= 0)
+        if (comp.Charges <= 0 && EntityManager.IsServer())
             QueueDel(uid);
     }
 }
