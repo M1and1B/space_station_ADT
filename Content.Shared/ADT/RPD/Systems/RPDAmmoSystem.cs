@@ -49,8 +49,7 @@ public sealed class RPDAmmoSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void ApplyRefill(EntityUid uid, EntityUid target, EntityUid user, LimitedChargesComponent charges,
-        RPDAmmoComponent comp)
+    private void ApplyRefill(EntityUid uid, EntityUid target, EntityUid user, LimitedChargesComponent charges, RPDAmmoComponent comp)
     {
         var refillAmount = Math.Min(charges.MaxCharges - charges.Charges, comp.Charges);
         if (refillAmount <= 0)
@@ -65,7 +64,16 @@ public sealed class RPDAmmoSystem : EntitySystem
         _popup.PopupClient(Loc.GetString("rpd-ammo-component-after-interact-refilled"), target, user);
         Dirty(uid, comp);
 
-        if (comp.Charges <= 0 && EntityManager.IsServer())
-            QueueDel(uid);
+        if (comp.Charges <= 0)
+        {
+            if (HasComponent<RPDAmmoComponent>(uid))
+            {
+                QueueDel(uid); // СУКА РАБОТАЙ
+            }
+            else
+            {
+                Logger.Warning($"Попытка удалить невалидную сущность: {uid}");
+            }
+        }
     }
 }
