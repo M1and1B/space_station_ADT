@@ -22,7 +22,7 @@ public sealed class HeatExchangerSystem : EntitySystem
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    float tileLoss;
+    private float tileLoss;
 
     public override void Initialize()
     {
@@ -75,6 +75,10 @@ public sealed class HeatExchangerSystem : EntitySystem
         // Finally, back out n, the moles transferred in this tick:
         float n = (P - Pfinal) / dPdn;
 
+        const float MinTransfer = 0.01f;
+        if (MathF.Abs(n) < MinTransfer)
+            return;
+
         GasMixture xfer;
         if (n > 0)
             xfer = inlet.Air.Remove(n);
@@ -111,7 +115,7 @@ public sealed class HeatExchangerSystem : EntitySystem
         // ΔT' = -kΔT^4, k = -ΔT'/ΔT^4
         float kR = comp.alpha * a0 * TdivQ;
         // Based on the fact that ((3t)^(-1/3))' = -(3t)^(-4/3) = -((3t)^(-1/3))^4, and ΔT' = -kΔT^4.
-        float dT2R = dTR * MathF.Pow((1f + 3f * kR * dt * dTRA * dTRA * dTRA), -1f/3f);
+        float dT2R = dTR * MathF.Pow((1f + 3f * kR * dt * dTRA * dTRA * dTRA), -1f / 3f);
         float dER = (dTR - dT2R) / TdivQ;
         _atmosphereSystem.AddHeat(xfer, -dER);
         if (hasEnv && environment != null)
@@ -134,6 +138,5 @@ public sealed class HeatExchangerSystem : EntitySystem
             _atmosphereSystem.Merge(outlet.Air, xfer);
         else
             _atmosphereSystem.Merge(inlet.Air, xfer);
-
     }
 }

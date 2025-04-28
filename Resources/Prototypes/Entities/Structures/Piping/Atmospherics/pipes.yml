@@ -283,3 +283,35 @@
     guides:
     - Pipes
     - PipeNetworks
+
+- type: entity
+  parent: GasPipeBase
+  id: GasHeatExchangerStraight
+  suffix: Straight
+  components:
+  - type: HeatExchanger
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: Longitudinal
+        connectionsEnabled: false
+  - type: Sprite
+    sprite: ADT/Structures/Piping/Atmospherics/heatexchanger.rsi
+    layers:
+      - state: heStraight
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: Thermoregulator
+  - type: Construction
+    graph: GasBinary
+    node: radiator
+  - type: GuideHelp
+    guides:
+    - Radiators
+
+#    - type: Construction
+#      graph: GasBinary
+#      node: bendradiator
+      
