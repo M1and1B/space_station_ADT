@@ -4,8 +4,15 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     xmlns:co="clr-namespace:Content.Client.UserInterface.Controls"
     MinHeight="210">
+
+    <PanelContainer Name="Border" StyleClasses="WindowBorder" />
+    <PanelContainer Name="AccentH" Margin="-1 170 -2 170" Access="Public" StyleClasses="WindowBackground" />
+    <PanelContainer Name="AccentV" Margin="220 -1 220 -1" Access="Public" StyleClasses="WindowBackground" />
+    <PanelContainer Name="Background" Access="Public" StyleClasses="WindowBackground" />
+
     <BoxContainer Name="MainContainer" Orientation="Vertical">
-        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'vending-machine-component-search-filter'}" HorizontalExpand="True"  Margin ="4 4"/>
+        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'vending-machine-component-search-filter'}" HorizontalExpand="True" Margin="4 4"/>
+
         <!-- ADT-Economy-Start -->
         <BoxContainer Orientation="Horizontal">
             <Label Name="CreditsLabel" HorizontalExpand="True"/>
@@ -15,17 +22,18 @@
                 HorizontalAlignment="Right"/>
         </BoxContainer>
         <!-- ADT-Economy-End -->
+
         <co:SearchListContainer Name="VendingContents" VerticalExpand="True" Margin="4 0"/>
-         <!-- Footer -->
+
+        <!-- Footer -->
         <BoxContainer Orientation="Vertical">
             <PanelContainer StyleClasses="LowDivider" />
             <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
                 <Label Text="{Loc 'vending-machine-flavor-left'}" StyleClasses="WindowFooterText" />
                 <Label Text="{Loc 'vending-machine-flavor-right'}" StyleClasses="WindowFooterText"
-                        HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
+                       HorizontalAlignment="Right" HorizontalExpand="True" Margin="0 0 5 0" />
                 <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
-                        VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
+                             VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>
-</controls:FancyWindow>

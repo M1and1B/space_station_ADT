@@ -38,6 +38,20 @@ namespace Content.Client.VendingMachines.UI
             VendingContents.GenerateItem += GenerateButton;
             VendingContents.ItemKeyBindDown += (args, data) => OnItemSelected?.Invoke(args, data);
         }
+        public Color? BorderColor
+        {
+            set => Border.ModulateSelfOverride = value;
+        }
+
+        public Color? AccentHColor
+        {
+            set => AccentH.ModulateSelfOverride = value;
+        }
+
+        public Color? AccentVColor
+        {
+            set => AccentV.ModulateSelfOverride = value;
+        }
 
         protected override void Dispose(bool disposing)
         {

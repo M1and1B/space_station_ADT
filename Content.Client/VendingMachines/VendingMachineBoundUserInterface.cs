@@ -35,7 +35,7 @@ namespace Content.Client.VendingMachines
             _menu.Populate(Owner, _cachedInventory, component.PriceMultiplier, component.Credits); //ADT-Economy-Tweak
 
             // ADT-Color-Tweak
-            var borderColorComponent = EntMan.GetComponentOrNull<BorderColorComponent>(Owner);
+            var borderColorComponent = EntMan.GetComponentOrNull<VendingMachineBorderColorComponent>(Owner);
             if (borderColorComponent != null)
             {
                 _menu.BorderColor = borderColorComponent.BorderColor;

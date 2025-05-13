@@ -104,6 +104,8 @@
     price: 100
   - type: Appearance
   - type: WiresVisuals
+  - type: VendingMachineBorderColor
+    borderColor: "#ffcc00"
 
 - type: entity
   parent: VendingMachine
