@@ -34,6 +34,15 @@ namespace Content.Client.VendingMachines
             _menu.OnWithdraw += SendMessage; //ADT-Economy
             _menu.Populate(Owner, _cachedInventory, component.PriceMultiplier, component.Credits); //ADT-Economy-Tweak
 
+            // ADT-Color-Tweak
+            var borderColorComponent = EntMan.GetComponentOrNull<BorderColorComponent>(Owner);
+            if (borderColorComponent != null)
+            {
+                _menu.BorderColor = borderColorComponent.BorderColor;
+                _menu.AccentHColor = borderColorComponent.AccentHColor;
+                _menu.AccentVColor = borderColorComponent.AccentVColor;
+            }
+
             _menu.OpenCentered();
         }
 
